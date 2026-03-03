@@ -13,8 +13,8 @@ from langchain_core.messages import HumanMessage, AIMessage
 
 logger = logging.getLogger("A.X.I.O.M")
 
-class RealtimeGroqSerice(GroqService):
-    def init_(self, vector_store_service: VectorStoreService):
+class RealtimeGroqService(GroqService):
+    def __init__(self, vector_store_service: VectorStoreService):
         super().__init__(vector_store_service)
         tavily_api_key = os.getenv("TAVILY_API_KEY", "")
         if tavily_api_key:

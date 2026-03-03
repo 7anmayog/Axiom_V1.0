@@ -31,7 +31,7 @@ class GroqService:
     _shared_key_index = 0
     _lock = None
 
-    def __init__(self, vector_store_serice: VectorStoreService):
+    def __init__(self, vector_store_service: VectorStoreService):
         if not GROQ_API_KEYS:
             raise ValueError(
                 "No Groq API Keys connfigured. Set GROQ_API_KEY (and optionally GROQ_API_KEY_2, GROQ_API_KEY_3, ...) in .env"
@@ -44,7 +44,7 @@ class GroqService:
             )
             for key in GROQ_API_KEYS
         ]
-        self.vector_store_service = vector_store_serice
+        self.vector_store_service = vector_store_service
         logger.info(f"Initialized GroqService with {len(GROQ_API_KEYS)} API key(s)")
 
     def _invoke_llm(
