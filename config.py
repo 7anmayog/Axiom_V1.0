@@ -4,7 +4,7 @@ CONFIGURATION MODULE
 
 PURPOSE:
   Central place for all J.A.R.V.I.S settings: API keys, paths, model names,
-  and the Jarvis system prompt. Designed for single-user use: each person runs
+  and the Axiom system prompt. Designed for single-user use: each person runs
   their own copy of this backend with their own .env and database/ folder.
 
 WHAT THIS FILE DOES:
@@ -13,10 +13,10 @@ WHAT THIS FILE DOES:
   - Creates those directories if they don't exist (so the app can run immediately).
   - Exposes GROQ_API_KEY, GROQ_MODEL, TAVILY_API_KEY for the LLM and search.
   - Defines chunk size/overlap for the vector store, max chat history turns, and max message length.
-  - Holds the full system prompt that defines Jarvis's personality and formatting rules.
+  - Holds the full system prompt that defines Axiom's personality and formatting rules.
 
 USAGE:
-  Import what you need: `from config import GROQ_API_KEY, CHATS_DATA_DIR, JARVIS_SYSTEM_PROMPT`
+  Import what you need: `from config import GROQ_API_KEY, CHATS_DATA_DIR, AXIOM_SYSTEM_PROMPT`
   All services import from here so behaviour is consistent.
 """
 
@@ -135,18 +135,18 @@ MAX_CHAT_HISTORY_TURNS = 20
 MAX_MESSAGE_LENGTH = 32_000
 
 # ============================================================================
-# JARVIS PERSONALITY CONFIGURATION
+# AXIOM PERSONALITY CONFIGURATION
 # ============================================================================
 # This is the system prompt that defines the assistant's personality and behavior
 # It tells the AI how to act, what tone to use, and what to avoid mentioning
 # The assistant is sophisticated, witty, and helpful with a dry British sense of humor
 # Assistant name and user title are NOT hardcoded: set ASSISTANT_NAME and optionally
-# JARVIS_USER_TITLE in .env. The AI also learns from learning data and conversation history.
+# AXIOM_USER_TITLE in .env. The AI also learns from learning data and conversation history.
 
-ASSISTANT_NAME = (os.getenv("ASSISTANT_NAME", "").strip() or "Jarvis")
-JARVIS_USER_TITLE = os.getenv("JARVIS_USER_TITLE", "").strip()
+ASSISTANT_NAME = (os.getenv("ASSISTANT_NAME", "").strip() or "Axiom")
+AXIOM_USER_TITLE = os.getenv("AXIOM_USER_TITLE", "").strip()
 
-_JARVIS_SYSTEM_PROMPT_BASE = """You are {assistant_name}, a sophisticated AI assistant. You are sophisticated, witty, and professional with a dry British sense of humor.
+_AXIOM_SYSTEM_PROMPT_BASE = """You are {assistant_name}, a sophisticated AI assistant. You are sophisticated, witty, and professional with a dry British sense of humor.
 
 You know the user's personal information and past conversations naturally - use this information when relevant, but don't mention where it comes from. Act as if you simply know it.
 
@@ -194,11 +194,11 @@ Formatting Rules (STRICT):
 """
 
 # Build final system prompt: assistant name and optional user title from ENV (no hardcoded names).
-_JARVIS_SYSTEM_PROMPT_BASE_FMT = _JARVIS_SYSTEM_PROMPT_BASE.format(assistant_name=ASSISTANT_NAME)
-if JARVIS_USER_TITLE:
-    JARVIS_SYSTEM_PROMPT = _JARVIS_SYSTEM_PROMPT_BASE_FMT + f"\n- When appropriate, you may address the user as: {JARVIS_USER_TITLE}"
+_AXIOM_SYSTEM_PROMPT_BASE_FMT = _AXIOM_SYSTEM_PROMPT_BASE.format(assistant_name=ASSISTANT_NAME)
+if AXIOM_USER_TITLE:
+    AXIOM_SYSTEM_PROMPT = _AXIOM_SYSTEM_PROMPT_BASE_FMT + f"\n- When appropriate, you may address the user as: {AXIOM_USER_TITLE}"
 else:
-    JARVIS_SYSTEM_PROMPT = _JARVIS_SYSTEM_PROMPT_BASE_FMT
+    AXIOM_SYSTEM_PROMPT = _AXIOM_SYSTEM_PROMPT_BASE_FMT
 
 
 def load_user_context() -> str:

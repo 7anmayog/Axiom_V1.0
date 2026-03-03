@@ -1,5 +1,5 @@
 """
-JARVIS TEST SCRIPT - General and Realtime Chat Selector
+AXIOM TEST SCRIPT - General and Realtime Chat Selector
 ========================================================
 
 PURPOSE:
@@ -9,7 +9,7 @@ It allows you to switch between general chat (pure LLM, no web search) and realt
 seamless conversation switching.
 
 WHY IT EXISTS:
-- Provides an easy way to test the JARVIS API without building a frontend
+- Provides an easy way to test the AXIOM API without building a frontend
 - Demonstrates how to use both chat endpoints
 - Shows session management in action
 - Useful for development and debugging
@@ -42,7 +42,7 @@ from uuid import uuid4
 try:
     from config import ASSISTANT_NAME
 except ImportError:
-    ASSISTANT_NAME = "Jarvis"
+    ASSISTANT_NAME = "Axiom"
 
 
 # -----------------------------------------------------------------------------
@@ -88,7 +88,7 @@ def get_user_input():
 
 def send_message(message, mode):
     """
-    Send a message to the appropriate JARVIS endpoint.
+    Send a message to the appropriate AXIOM endpoint.
     
     This function sends the user's message to either the general chat endpoint
     (/chat) or the realtime chat endpoint (/chat/realtime) based on the selected mode.
@@ -99,7 +99,7 @@ def send_message(message, mode):
         mode: Either "general" or "realtime" to determine which endpoint to use
     
     Returns:
-        str: JARVIS's response, or an error message if something went wrong
+        str: AXIOM's response, or an error message if something went wrong
     
     Note:
         - Creates a new session_id if one doesn't exist
@@ -169,7 +169,7 @@ def get_chat_history():
     Note:
         - Returns "No active session" if no session_id exists
         - Shows all messages from both general and realtime modes
-        - Messages are numbered and clearly labeled as "You" or "Jarvis"
+        - Messages are numbered and clearly labeled as "You" or "AXIOM"
     """
     if not SESSION_ID:
         return "No active session"
