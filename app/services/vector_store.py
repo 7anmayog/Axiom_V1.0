@@ -79,3 +79,8 @@ class VectorStoreService:
                 self.vector_store.save_local(str(VECTOR_STORE_DIR))
             except Exception as e:
                 logger.error("failed to save vectro store to disk: %s", e)
+
+    def get_retriever(self, k: int = 10):
+        if not self.vector_store:
+            raise RuntimeError("Vector store not initialized. This should not happen.")
+        return self.vector_store.as_retriever(search_kwargs={"k": k})
