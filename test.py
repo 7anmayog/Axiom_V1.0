@@ -1,39 +1,3 @@
-"""
-AXIOM TEST SCRIPT - General and Realtime Chat Selector
-========================================================
-
-PURPOSE:
-This is a command-line test interface for interacting with J.A.R.V.I.S.
-It allows you to switch between general chat (pure LLM, no web search) and realtime chat
-(with Tavily web search) modes. Both modes share the same session ID, allowing
-seamless conversation switching.
-
-WHY IT EXISTS:
-- Provides an easy way to test the AXIOM API without building a frontend
-- Demonstrates how to use both chat endpoints
-- Shows session management in action
-- Useful for development and debugging
-
-USAGE:
-    python test.py
-    
-    Make sure the server is running first: python run.py
-
-COMMANDS:
-    1 - Switch to General Chat mode (pure LLM, no web search)
-    2 - Switch to Realtime Chat mode (with Tavily web search)
-    /history - View chat history for current session
-    /clear - Start a new session (clears current session)
-    /quit or /exit - Exit the test interface
-
-HOW IT WORKS:
-1. User selects a mode (1 for general, 2 for realtime)
-2. User types messages which are sent to the appropriate endpoint
-3. Both modes use the same session_id, so conversation context is shared
-4. User can switch modes at any time within the same conversation
-5. Session persists until user clears it or starts a new one
-"""
-
 import requests
 import json
 from datetime import datetime
@@ -61,7 +25,7 @@ CURRENT_MODE = None  # "general" (pure LLM) or "realtime" (with Tavily search)
 
 def print_header():
     print("\n" + "="*60)
-    print("🤖 J.A.R.V.I.S - General & Realtime Chat")
+    print("A.X.I.O.M - General & Realtime Chat")
     print("="*60)
     print("\nModes:")
     print("  1 = General Chat (pure LLM, no web search)")
